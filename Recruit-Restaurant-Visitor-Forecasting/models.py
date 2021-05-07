@@ -7,24 +7,20 @@ class MyModel(nn.Module):
         self.nn_layers = nn.Sequential(
             # ========================================================== #
             # fully connected layer
-            # Can stack number of layers you want
-            # Note that the first layer's in_features need to match to data's dim.
-            # And out_features need to match to label's dim
-            nn.Linear(in_features=223, out_features=512),
+            nn.Linear(in_features=53, out_features=512),
             nn.LeakyReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(in_features=512, out_features=512),
+            nn.Linear(in_features=512, out_features=256),
             nn.LeakyReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(in_features=512, out_features=1024),
+            nn.Linear(in_features=256, out_features=128),
             nn.LeakyReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(in_features=1024, out_features=20),
+            nn.Linear(in_features=128, out_features=32),
+            nn.LeakyReLU(),
+            nn.Linear(in_features=32, out_features=1),
             # ========================================================== #
         )
 
     def forward(self, x):
-        # data fit into model, no need to rewrite
+        # data fit into model
         x = self.nn_layers(x)
         return x
 
